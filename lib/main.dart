@@ -38,11 +38,6 @@ class FormScreen extends StatelessWidget {
                 obscureText: true,
               ),
             ),
-
-            StreamBuilder(
-              stream: validation.submit,
-              builder: (_, snapShot) => Text(snapShot.data.toString())
-            ),
           ],
         ),
       ),
