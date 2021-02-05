@@ -1,7 +1,8 @@
 # validate text field
 
-A Flutter module to validate text fields using Rx-Dart  and if conditions satisfy then submit button
-will be click able
+A Flutter module to validate text fields using Rx-Dart  and if conditions satisfy then submit button will be click able
+
+<img src = "https://github.com/samrat19/validation/blob/master/images/video.gif" width = 250>
 
 ## Getting Started
 
