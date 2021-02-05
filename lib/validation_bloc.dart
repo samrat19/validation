@@ -10,10 +10,12 @@ class ValidationBloc {
 
   Sink<String> get sinkEmail => _email.sink;
 
-  Stream<String> get password => _password.stream;
+  Stream<String> get password => _password.stream.transform(validatePassword);
 
   Sink<String> get sinkPassword => _password.sink;
 
+  Stream<bool> get submitValid =>
+      Rx.combineLatest2(email, password, (e, p) => true);
 
   static bool isEmail(String email) {
     String value =
@@ -34,6 +36,14 @@ class ValidationBloc {
     }
   });
 
+  final validatePassword =
+      StreamTransformer<String, String>.fromHandlers(handleData: (value, sink) {
+    if (value.length != 0) {
+      value.length >= 8
+          ? sink.add(value)
+          : sink.addError('Password should be 8 characters long');
+    }
+  });
 
   dispose() {
     _email.close();

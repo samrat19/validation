@@ -9,10 +9,11 @@ class FormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(40.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             StreamBuilder(
               stream: validation.email,
@@ -25,7 +26,9 @@ class FormScreen extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                 ),
             ),
-
+            SizedBox(
+              height: 20.0,
+            ),
             StreamBuilder(
               stream: validation.password,
               builder: (_, snapShot) => TextField(
@@ -36,6 +39,25 @@ class FormScreen extends StatelessWidget {
                 ),
                 keyboardType: TextInputType.text,
                 obscureText: true,
+              ),
+            ),
+
+            SizedBox(
+              height: 40.0,
+            ),
+
+            StreamBuilder(
+              stream: validation.submitValid,
+              builder: (_, snapShot) => MaterialButton(
+                onPressed: snapShot.data != true? (){} : (){
+                  print('true');
+                },
+                child: Text('SUBMIT',style: TextStyle(
+                  letterSpacing: 1.4,
+                  fontSize: 16.0,
+                  color: Colors.white,
+                ),),
+                color: snapShot.data != true?Colors.grey[200]:Colors.deepPurpleAccent,
               ),
             ),
           ],
