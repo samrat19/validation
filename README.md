@@ -1,6 +1,7 @@
-# text_field_validation
+# validate text field
 
-A new Flutter application.
+A Flutter module to validate text fields using Rx-Dart  and if conditions satisfy then submit button
+will be click able
 
 ## Getting Started
 
