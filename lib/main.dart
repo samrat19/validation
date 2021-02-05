@@ -10,16 +10,40 @@ class FormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: StreamBuilder(
-          stream: validation.email,
-          builder: (_, snapShot) => TextField(
-              onChanged: (val) => validation.inMail.add(val),
-              decoration: InputDecoration(
-                hintText: 'Email',
-                errorText: snapShot.hasError?snapShot.error.toString():null
-              ),
-              keyboardType: TextInputType.emailAddress,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            StreamBuilder(
+              stream: validation.email,
+              builder: (_, snapShot) => TextField(
+                  onChanged: (val) => validation.sinkEmail.add(val),
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    errorText: snapShot.hasError?snapShot.error.toString():null
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
             ),
+
+            StreamBuilder(
+              stream: validation.password,
+              builder: (_, snapShot) => TextField(
+                onChanged: (val) => validation.sinkPassword.add(val),
+                decoration: InputDecoration(
+                    hintText: 'Password',
+                    errorText: snapShot.hasError?snapShot.error.toString():null
+                ),
+                keyboardType: TextInputType.text,
+                obscureText: true,
+              ),
+            ),
+
+            StreamBuilder(
+              stream: validation.submit,
+              builder: (_, snapShot) => Text(snapShot.data.toString())
+            ),
+          ],
         ),
       ),
     );
