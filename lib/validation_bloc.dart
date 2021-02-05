@@ -28,7 +28,6 @@ class ValidationBloc {
 
   final validateEmail =
       StreamTransformer<String, String>.fromHandlers(handleData: (value, sink) {
-    print(value);
     if (value.length != 1) {
       isEmail(value)
           ? sink.add(value)
